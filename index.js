@@ -31,7 +31,7 @@ function calculateTotalPerPerson(shoppingList, mailList) {
 }
 
 shoppingList = [
-    { item: "pencil", amount: 1, price: 163 },         
+    { item: "pencil", amount: 1, price: 100 },         
     { item: "smartphone", amount: 15, price: 159999 }, 
     { item: "notebook", amount: 7, price: 239980 },    
     { item: "mouse", amount: 37, price: 2973 },        
