@@ -39,7 +39,7 @@ shoppingList = [
 ]                                                       
 
 mailList = [
-    "joao@abc.com",
+    "joao@abcd.com",
     "pedro@xpto.com.br",
     "dev@stone.com.br"
 ]
