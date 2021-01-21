@@ -9,37 +9,17 @@ function calculateTotalPerPerson(shoppingList, mailList) {
     if (mailList.length === 0)
         return "Empty mail list"
 
-     shoppingListTotal = shoppingList.reduce((total, currentItem) => {
-        return total += currentItem.amount * currentItem.price 
+    shoppingListTotal = shoppingList.reduce((total, currentItem) => {
+        return total += currentItem.amount * currentItem.price
     }, 0)
 
-    let valuePerPerson =  shoppingListTotal / mailList.length 
+    let valuePerPerson = shoppingListTotal / mailList.length
+    let modValuePerPerson = shoppingListTotal % mailList.length
 
     const billPerPerson = new Map()
 
-    // mailList.forEach((email, index) => {
-    //     if(mailList.length == index + 1) {
-    //         shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson)
-    //         billPerPerson.set(email, Math.floor(valuePerPerson + shoppingListTotal))
-    //     } else {
-    //         shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson) 
-    //         billPerPerson.set(email, Math.floor(valuePerPerson))
-    //     }
-    // })
-
-   let modValuePerPerson = shoppingListTotal % mailList.length
-//    mailList.reduce((difference, email, index) => {
-//         if(mailList.length == index + 1) {
-//             shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson)
-//             return difference = Math.floor(shoppingListTotal) 
-//         }
-//         else {
-//             shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson)
-//         } 
-//     }, 0)
-
     mailList.forEach(email => {
-        if(modValuePerPerson != 0) {
+        if (modValuePerPerson != 0) {
             billPerPerson.set(email, Math.floor(valuePerPerson + 1))
             modValuePerPerson = modValuePerPerson - 1
         } else {
@@ -51,12 +31,12 @@ function calculateTotalPerPerson(shoppingList, mailList) {
 }
 
 shoppingList = [
-    { item: "pencil", amount: 1, price: 100 },         
-    { item: "smartphone", amount: 15, price: 159999 }, 
-    { item: "notebook", amount: 7, price: 239980 },    
-    { item: "mouse", amount: 37, price: 2973 },        
-    { item: "keyboard", amount: 37, price: 3539 }      
-]                                                       
+    { item: "pencil", amount: 1, price: 100 },
+    { item: "smartphone", amount: 15, price: 159999 },
+    { item: "notebook", amount: 7, price: 239980 },
+    { item: "mouse", amount: 37, price: 2973 },
+    { item: "keyboard", amount: 37, price: 3539 }
+]
 
 mailList = [
     "joao@abcd.com",
