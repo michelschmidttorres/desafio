@@ -13,21 +13,18 @@ function calculateTotalPerPerson(shoppingList, mailList) {
         return total += currentItem.amount * currentItem.price
     }, 0)
 
-    let valuePerPerson = shoppingListTotal / mailList.length
-    let modValuePerPerson = shoppingListTotal % mailList.length
+    const valuePerPerson = Math.floor(shoppingListTotal / mailList.length)
+    let missingCents = shoppingListTotal % mailList.length
 
-    const billPerPerson = new Map()
-
-    mailList.forEach(email => {
-        if (modValuePerPerson != 0) {
-            billPerPerson.set(email, Math.floor(valuePerPerson + 1))
-            modValuePerPerson = modValuePerPerson - 1
+    return mailList.reduce((billPerPerson, email) => {
+        if (missingCents != 0) {
+            billPerPerson[email] = valuePerPerson + 1
+            missingCents--
         } else {
-            billPerPerson.set(email, Math.floor(valuePerPerson))
+            billPerPerson[email] =  valuePerPerson
         }
-    })
-
-    return billPerPerson
+        return billPerPerson
+    }, {})
 }
 
 shoppingList = [
@@ -45,6 +42,3 @@ mailList = [
 ]
 
 console.log(calculateTotalPerPerson(shoppingList, mailList))
-
-
-
