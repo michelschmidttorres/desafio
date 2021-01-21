@@ -17,15 +17,35 @@ function calculateTotalPerPerson(shoppingList, mailList) {
 
     const billPerPerson = new Map()
 
-    mailList.forEach((email, index) => {
-        if(mailList.length == index + 1) {
-            shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson)
-            billPerPerson.set(email, Math.floor(valuePerPerson + shoppingListTotal))
+    // mailList.forEach((email, index) => {
+    //     if(mailList.length == index + 1) {
+    //         shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson)
+    //         billPerPerson.set(email, Math.floor(valuePerPerson + shoppingListTotal))
+    //     } else {
+    //         shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson) 
+    //         billPerPerson.set(email, Math.floor(valuePerPerson))
+    //     }
+    // })
+
+   let modValuePerPerson = shoppingListTotal % mailList.length
+//    mailList.reduce((difference, email, index) => {
+//         if(mailList.length == index + 1) {
+//             shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson)
+//             return difference = Math.floor(shoppingListTotal) 
+//         }
+//         else {
+//             shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson)
+//         } 
+//     }, 0)
+
+    mailList.forEach(email => {
+        if(modValuePerPerson != 0) {
+            billPerPerson.set(email, Math.floor(valuePerPerson + 1))
+            modValuePerPerson = modValuePerPerson - 1
         } else {
-            shoppingListTotal = shoppingListTotal - Math.floor(valuePerPerson) 
             billPerPerson.set(email, Math.floor(valuePerPerson))
         }
-    });
+    })
 
     return billPerPerson
 }
@@ -41,7 +61,7 @@ shoppingList = [
 mailList = [
     "joao@abcd.com",
     "pedro@xpto.com.br",
-    "dev@stone.com.br",
+    "dev@stone.com.br"
 ]
 
 console.log(calculateTotalPerPerson(shoppingList, mailList))
