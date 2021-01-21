@@ -41,10 +41,9 @@ shoppingList = [
 mailList = [
     "joao@abcd.com",
     "pedro@xpto.com.br",
-    "dev@stone.com.br"
+    "dev@stone.com.br",
 ]
 
-// Showing the result on the console when calling the function
 console.log(calculateTotalPerPerson(shoppingList, mailList))
 
 
